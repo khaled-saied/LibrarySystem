@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="ConsoleTheme">
+      <HintPath>H:\.Net\Projects\ConsoleTheme-master\ConsoleTheme\bin\Debug\net8.0\ConsoleTheme.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
