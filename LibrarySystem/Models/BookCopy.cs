@@ -35,19 +35,17 @@ namespace LibrarySystem.Models
 
 
         //+Borrow(member, loanDays) : void
-        //TO DO
         public void Borrow(Memeber memeber ,int loanDays)
         {
             if(!IsAvailable())
                 throw new InvalidOperationException($"Copy {CopyId} is not available (Status: {Status}).");
 
             Status = CopyStatus.Borrowed;
-            ActiveTransaction = new(); //TO Do
+            ActiveTransaction = new(memeber,this,loanDays);
             memeber.AddTransaction(ActiveTransaction);
         }
 
         //+Return() : decimal
-        //TO DO
         public decimal Return()
         {
             if(ActiveTransaction == null)
@@ -55,11 +53,11 @@ namespace LibrarySystem.Models
             if(Status != CopyStatus.Borrowed)
                 throw new InvalidOperationException($"Copy {CopyId} is not currently borrowed.");
 
-            //TO Do To Cala The Fine
-
-
-
-            return 0;
+            ActiveTransaction.MarkReturned(DateOnly.FromDateTime(DateTime.Now));
+            Status = CopyStatus.Available;
+            decimal fine = ActiveTransaction.CalculateFine();
+            ActiveTransaction = null;
+            return fine;
         }
 
 
