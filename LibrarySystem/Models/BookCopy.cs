@@ -8,7 +8,7 @@ using LibrarySystem.Models.Enums;
 
 namespace LibrarySystem.Models
 {
-    public class BookCopy : IDisplayable
+    public class BookCopy : IDisplayable, IBorrowable
     {
         public BookCopy(string copyId, Book book, string condition="Good")
         {
