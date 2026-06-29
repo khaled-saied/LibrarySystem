@@ -35,13 +35,13 @@ namespace LibrarySystem.Models
 
 
         //+Borrow(member, loanDays) : void
-        public void Borrow(Memeber memeber ,int loanDays)
+        public void Borrow(Memeber memeber, int loanDays=14)
         {
-            if(!IsAvailable())
+            if (!IsAvailable())
                 throw new InvalidOperationException($"Copy {CopyId} is not available (Status: {Status}).");
 
             Status = CopyStatus.Borrowed;
-            ActiveTransaction = new(memeber,this,loanDays);
+            ActiveTransaction = new(memeber, this, loanDays);
             memeber.AddTransaction(ActiveTransaction);
         }
 
